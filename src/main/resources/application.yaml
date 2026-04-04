@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: devassistant
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ai_dev_assistant
+    username: ai_user
+    password: ai_password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  ai:
+    anthropic:
+      api-key: {anthropic_api_key}
+      chat:
+        options:
+          model: claude-sonnet-4-6
+          temperature: 0.2
+          max-tokens: 300
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
