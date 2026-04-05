@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ai.devassistant.dto.*;
 import org.ai.devassistant.orchestrator.AiOrchestrator;
+import org.ai.devassistant.orchestrator.InputSanitizer;
 import org.ai.devassistant.orchestrator.PromptBuilder;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,10 @@ public class DevAssistantService {
 
     private final AiOrchestrator orchestrator;
     private final PromptBuilder promptBuilder;
+    private final InputSanitizer sanitizer;
 
     public ApiResponseDto<?> explainCode(String input) {
-
+        input = sanitizer.sanitize(input);
         String prompt = promptBuilder.build("CODE_EXPLAIN", input);
 
         return orchestrator.execute(
@@ -29,7 +31,7 @@ public class DevAssistantService {
     }
 
     public ApiResponseDto<?> analyzeLogs(String input) {
-
+        input = sanitizer.sanitize(input);
         String prompt = promptBuilder.build("LOG_ANALYSIS", input);
 
         return orchestrator.execute(
@@ -41,7 +43,7 @@ public class DevAssistantService {
     }
 
     public ApiResponseDto<?> generateTestCases(String input) {
-
+        input = sanitizer.sanitize(input);
         String prompt = promptBuilder.build("TEST_CASE_GENERATION", input);
 
         return orchestrator.execute(
@@ -54,7 +56,7 @@ public class DevAssistantService {
 
 
     public ApiResponseDto<?> refactorCode(String input) {
-
+        input = sanitizer.sanitize(input);
         String prompt = promptBuilder.build("CODE_REFACTOR", input);
 
         return orchestrator.execute(
@@ -67,7 +69,7 @@ public class DevAssistantService {
     }
 
     public ApiResponseDto<?> codeFix(String input) {
-
+        input = sanitizer.sanitize(input);
         String prompt = promptBuilder.build("CODE_FIX", input);
 
         return orchestrator.execute(
@@ -79,7 +81,7 @@ public class DevAssistantService {
     }
 
     public ApiResponseDto<?> bugDetection(String input) {
-
+        input = sanitizer.sanitize(input);
         String prompt = promptBuilder.build("BUG_DETECTION", input);
 
         return orchestrator.execute(
