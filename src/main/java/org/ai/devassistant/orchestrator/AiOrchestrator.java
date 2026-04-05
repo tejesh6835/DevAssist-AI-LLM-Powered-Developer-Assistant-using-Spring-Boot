@@ -7,6 +7,7 @@ import org.ai.devassistant.client.AiClient;
 import org.ai.devassistant.dto.ApiResponseDto;
 import org.ai.devassistant.entity.AiRequestLog;
 import org.ai.devassistant.repository.AiRequestLogRepository;
+import org.ai.devassistant.service.AiCacheService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ public class AiOrchestrator {
     private final ObjectMapper objectMapper;
     private final AiRequestLogRepository repository;
     private final ResponseValidator validator;
+    private final AiCacheService aiCacheService;
 
     public <T> ApiResponseDto<T> execute(
             String type,
@@ -30,7 +32,7 @@ public class AiOrchestrator {
 
         log.info("AI Request type: {}", type);
 
-        String response = aiClient.callAI(prompt);
+        String response = aiCacheService.getAiResponse(type, input, prompt);
 
         response = validator.validateAndFix(response, prompt, aiClient);
 
