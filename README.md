@@ -140,8 +140,7 @@ DB Logging + Response
 ---
 
 ## ✅ 2. Supported Request Types
-```md
-# 📌 Supported Request Types
+# Supported Request Types
 
 | Type          | Description |
 |--------------|------------|
@@ -151,7 +150,6 @@ DB Logging + Response
 | refactor     | Improve code quality |
 | detect-bugs  | Identify bugs in code |
 | code-fix     | Fix issues in code |
-```
 
 # 🔮 Future Enhancements
 
