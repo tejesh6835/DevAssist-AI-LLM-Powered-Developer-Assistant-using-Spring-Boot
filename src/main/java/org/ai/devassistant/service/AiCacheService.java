@@ -19,8 +19,6 @@ public class AiCacheService {
     )
     public String getAiResponse(String type, String input, String prompt) {
 
-        String response = aiClient.callAI(prompt);
-
-        return validator.validateAndFix(response, prompt, aiClient);
+        return aiClient.callAI(prompt);
     }
 }
