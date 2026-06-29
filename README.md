@@ -25,7 +25,7 @@ It provides capabilities like:
 ---
 
 # Architecture Diagram
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/6665b4b1-e61e-413a-a577-420b984cfd19" />
+<img width="5480" height="3392" alt="image" src="https://github.com/user-attachments/assets/029d8786-9e26-456e-86de-542458c3cceb" />
 
 ---
 
@@ -132,8 +132,24 @@ DB Logging + Response
 ### Request
 ```json
 {
-  "type": "explain",
-  "input": "public int add(int a,int b){return a+b;}"
+  "status": "SUCCESS",
+  "type": "CODE_EXPLAIN",
+  "data": {
+    "purpose": "Adds two integers and returns their sum.",
+    "issues": [
+      { "issue": "No handling for int overflow when a + b exceeds Integer.MAX_VALUE", "severity": "LOW" }
+    ],
+    "improvements": [
+      "Use long or Math.addExact(a, b) to surface overflow",
+      "Add a Javadoc describing the contract"
+    ],
+    "bestPractices": [
+      "Keep the method pure and side-effect free (already true)",
+      "Add a unit test covering boundary values"
+    ],
+    "verdict": "Correct and simple; safe for typical inputs."
+  },
+  "timestamp": "2026-06-29T12:00:00.123"
 }
 ```
 
